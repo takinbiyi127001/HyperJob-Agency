@@ -1,0 +1,88 @@
+Creating models
+Description
+
+HyperJob is a recruitment agency founded back in 1970. Its managers still prefer to communicate by phone or email and
+Search for employees in an old-fashioned way. That was an efficient strategy some twenty years ago, but nowadays,
+  potential employees prefer to apply for jobs online. The problem is that HyperJob still doesn't have a website,
+   so they want you to develop one as soon as possible.
+
+The website should allow recruiters to create vacancies and job seekers to create resumes.
+
+Objectives
+We need to safely store all the vacancies and resumes in a database. Your first task is to develop data models to manage
+ the database tables.
+
+Use the default settings of the project with the predefined SQLite database.
+Throughout the project, we will need at least two models: Vacancy and Resume. Both of them should have description and
+ author fields. The description field is a text field for no more than 1024 symbols and the author field is a foreign
+  key linked to the django.contrib.auth.models.User model.
+
+Hint! If you get stuck when creating the author field, check out an example provided in the docs.
+
+Define Vacancy and Resume in the models.py modules in the applications (respectively, vacancy and resume) and migrate
+ them to the database.
+
+
+Main menu
+Description
+The website is designed for recruitment managers and candidates. A manager can create vacancies and read candidates'
+ resumes, while a candidate can create a resume and view vacancies. Both managers and candidates need to be able to
+  log in, log out, and see their profile.
+
+To begin with, let's create a main page with a menu.
+
+Objectives
+The main page of the service will have a menu with links to all other pages that the user needs: vacancy list, resume
+ list, and personal profile. At the top of the page, there should be a greeting message.
+
+Let's look at its design.
+
+The menu should contain an <h2> element at the top:
+<h2>Welcome to HyperJob!</h2>
+Next, there should be a menu with six links in separate <div> elements:
+Login page (href attribute equals "/login");
+Logout page (href attribute equals "/logout");
+Sign up page (href attribute equals "/signup");
+Vacancy list (href attribute equals "/vacancies");
+Resume list (href attribute equals "/resumes");
+Personal profile (href attribute equals "/home").
+If you start the application on your computer with the python manage.py runserver command, the menu page should be
+ available at the address localhost:8000.
+
+If you want to use a custom directory for your templates, add its path to the TEMPLATE['DIRS'] list in the settings.py
+ module.
+To combine a template with the HTTP handler, you can use the django.shortcuts.render function:
+
+render(request, template_name)
+You don't need to implement the handlers for these pages yet: you'll do that in the next steps.
+
+Take a moment to think where the relevant files concerning menu should be located in the Django project structure.
+Creating a separate Django application is usually a good approach if it is orthogonal to everything else and
+ is potentially reusable.
+
+
+Vacancy and resume pages
+Description
+The agency wants to launch the site next week. However, not all the pages will be ready by that time yet, and we
+need to create at least two particular pages to make the site work. Without the list of vacancies and the list of
+ resumes the service has no meaning, so we need to create these pages first.
+
+Objectives
+Your task is to create the pages with vacancies and resumes shown as lists of entries without any sorting.
+You can add any additional information on the page, but each list entry should at least meet the following criteria:
+
+Each resume or vacancy should be in a separate <div> element.
+The text in each element should be input as follows: "<author>: <description>", where <author> is the username field
+ of the User model.
+Example: <div>Pierre: Product Designer</div>
+If you start the application on your computer with the python manage.py runserver command, the vacancy list should
+ be available at the address localhost:8000/vacancies and the resume list should be at localhost:8000/resumes.
+
+To combine a template with the HTTP handler you can use the django.shortcuts.render function. To pass any arguments
+ to the template, add the dictionary to the render function:
+
+render(request, template_name, {'name_you_are_using_in_template': your_variable})
+Tests for your project will be run on a prepared database, so you do not need to worry about the amount of data
+in yours.
+In case you want to run your application for testing purposes and see some resumes and vacancies on the relevant
+pages, you can use Resume.objects.create or Vacancy.objects.create to add some data.
