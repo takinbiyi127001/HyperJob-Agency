@@ -1,13 +1,6 @@
 Creating models
 Description
 
-HyperJob is a recruitment agency founded back in 1970. Its managers still prefer to communicate by phone or email and
-Search for employees in an old-fashioned way. That was an efficient strategy some twenty years ago, but nowadays,
-  potential employees prefer to apply for jobs online. The problem is that HyperJob still doesn't have a website,
-   so they want you to develop one as soon as possible.
-
-The website should allow recruiters to create vacancies and job seekers to create resumes.
-
 Objectives
 We need to safely store all the vacancies and resumes in a database. Your first task is to develop data models to manage
  the database tables.
@@ -62,10 +55,7 @@ Creating a separate Django application is usually a good approach if it is ortho
 
 
 Vacancy and resume pages
-Description
-The agency wants to launch the site next week. However, not all the pages will be ready by that time yet, and we
-need to create at least two particular pages to make the site work. Without the list of vacancies and the list of
- resumes the service has no meaning, so we need to create these pages first.
+
 
 Objectives
 Your task is to create the pages with vacancies and resumes shown as lists of entries without any sorting.
@@ -86,3 +76,22 @@ Tests for your project will be run on a prepared database, so you do not need to
 in yours.
 In case you want to run your application for testing purposes and see some resumes and vacancies on the relevant
 pages, you can use Resume.objects.create or Vacancy.objects.create to add some data.
+
+
+Objectives
+Your task is to implement authentication on the website. You need to create three pages: one for new users to sign up
+ and create their accounts, another to log in with their username and password, and the last one to log out.
+  For logging out, users do not need to send any information, so they should just go to the right URL.
+
+Please use django.contrib.auth.forms.UserCreationForm for your signup handler,
+django.contrib.auth.forms.AuthenticationForm or django.contrib.auth.views.LoginView for the login handler, and
+ django.contrib.auth.views.LogoutView for logout.
+
+If the login request is successful, redirect the user to the menu page.
+
+If you start the application on your computer with the python manage.py runserver command, the signup page should be
+ available at the address localhost:8000/signup , the login page should be at localhost:8000/login, and the logout
+  at localhost:8000/logout.
+
+Please pay attention that the URLs do not have a slash at the end, so your URL patterns should not have it either.
+ You can redirect GET requests to the right page with the help of RedirectView if you need to:

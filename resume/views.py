@@ -14,3 +14,5 @@ class ResumeView(View):
             'resumes': resumes
         }
         return render(request, template_name=self.template_name, context=context)
+
+

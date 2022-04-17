@@ -6,9 +6,11 @@ from vacancy.models import Vacancy
 
 
 class ServiceAdmin(admin.ModelAdmin):
-    # list_filter = ("user", "description")
     list_display = ("author", "description")
+    # list_filter = ("user", "description")
 
 
 admin.site.register(Resume, ServiceAdmin)
 admin.site.register(Vacancy, ServiceAdmin)
+
+# superuser -> akint -- ering1
