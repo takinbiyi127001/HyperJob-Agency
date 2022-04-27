@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block Title %}
+    Create Vacancy
+{% endblock %}
+
+{% block content %}
+     <form action="{% url 'create_vacancy' %}" method="POST">
+     {% csrf_token %}
+         {{ form.as_p }}
+        <button>Save</button>
+      </form>
+
+{% endblock %}

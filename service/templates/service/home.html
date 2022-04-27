@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block Title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }}.
+            <div><a href="/logout">Logout</a></div>
+            {% if user.is_staff %}
+             <div><a href="{% url 'vacancy' %}">Vacancy</a></div>
+                <form action="vacancy/new" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Create Vacancy</button>
+                    {% else %}
+                    <div><a href="{% url 'resume' %}">Resume</a></div>
+                    <form action="resume/new" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Create Resume</button>
+                    </form>
+                </form>
+            {% endif %}
+    {% endif %}
+
+{#        <div><a href="{% url 'home' %}">Home</a></div>#}
+{#        {% else %}#}
+
+
+
+{% endblock %}
+

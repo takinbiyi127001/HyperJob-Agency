@@ -5,10 +5,20 @@ Signup
 {% endblock %}
 
 {% block content %}
-<form method="post" action="{% url 'signup' %}">
-    {% csrf_token %}
-  <table>{{ form.as_table }}</table>
+    <div class="container py-5">
+    <h1>User Registration</h1>
+    <p>Enter your username and password to register.</p>
 
-  <button type="submit">Send</button>
-</form>
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+      <table>
+          {{ form.as_table }}
+          <tr>
+              <td>&nbsp;</td>
+              <td><input type="submit" value="signup"></td>
+          </tr>
+      </table>
+        <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+    </form>
+</div>
 {% endblock %}

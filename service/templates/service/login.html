@@ -6,9 +6,19 @@
 {% endblock %}
 
 {% block content %}
+    <div>
+<hi> Please Login</hi>
+<p> You must be logged in to submit or view resume/vacancy </p>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-      <table>{{ form.as_table }}</table>
-      <button type="submit">Login</button>
+      <table>{{ form.as_table }}
+      <tr>
+          <td>&nbsp;</td>
+          <td><input type="submit" value="Login"></td>
+      </tr>
+      </table>
+        <p>Not registered yet? <a href="{% url 'signup' %}">Sign up here</a></p>
+        <input type="hidden" name="next" value="{{ next }}">
     </form>
+    </div>
 {% endblock %}

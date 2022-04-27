@@ -6,7 +6,8 @@ from vacancy.models import Vacancy
 
 
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("author", "description")
+    list_display = ("author", "description",)
+    # fieldsets = [(None, {'fields': ('username', 'password')})]
     # list_filter = ("user", "description")
 
 

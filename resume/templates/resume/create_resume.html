@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block Title %}
+    Create Resume
+{% endblock %}
+
+{% block content %}
+     <form action="{% url 'create_resume' %}" method="POST">
+     {% csrf_token %}
+         {{ form.as_p }}
+        <button>Save</button>
+      </form>
+
+{% endblock %}

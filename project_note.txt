@@ -95,3 +95,33 @@ If you start the application on your computer with the python manage.py runserve
 
 Please pay attention that the URLs do not have a slash at the end, so your URL patterns should not have it either.
  You can redirect GET requests to the right page with the help of RedirectView if you need to:
+
+Creating new vacancies and resumes
+Objectives
+Your task is to make a new page with two handlers: one for creating vacancies and another for creating resumes.
+ Only HyperJob managers can create vacancies, and only registered users can create resumes.
+ When a new item is created, it should appear on the appropriate resume or vacancy page.
+
+How can we distinguish managers from job hunters? To do that, you can use the boolean field is_staff
+ in django.contrib.auth.models.User. If it's true, the user is a manager; otherwise, they are a candidate.
+  Unauthenticated users are not allowed to create either vacancies or resumes. To check if a user is authenticated,
+   you can use the request.user.is_authenticated property in your handler.
+
+Create a profile page at localhost:8000/home. What is available on the profile page depends on who
+ is logged in⁠—a candidate should see a form to submit their resume, a manager⁠—a form to submit a vacancy.
+  Anonymous users should not be able to submit anything, therefore there should be no form there.
+   You can use an HTML form or define one with Django forms. The main requirement is that the handlers should
+    receive only one POST parameter: description. That's enough to create a new item.
+
+If the request is successful, redirect the user back to their profile; otherwise, respond with a
+403 (Forbidden) status code.
+
+If you start the application on your computer with the python manage.py runserver command, the profile page should
+ be available at localhost:8000/home, a new resume can be created at localhost:8000/resume/new, and a new vacancy
+  at localhost:8000/vacancy/new.
+
+Do not forget to use POST handlers for the creation of resumes and vacancies. There's no need to create GET handlers
+ neither for localhost:8000/resume/new nor for localhost:8000/vacancy/new.
+HINT! If you want to check the implementation and emulate having a user who is a manager and a candidate,
+ use the command python manage.py createsuperuser. For superuser, fields is_staff will be true while for ordinary
+  user created via signup is_staff is false.
